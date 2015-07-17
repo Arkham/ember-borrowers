@@ -12,6 +12,14 @@ export default Ember.Route.extend({
       console.log('+--- cancel called from friends route');
 
       return true;
+    },
+
+    delete: function(friend) {
+      console.log('+--- delete called from friends route');
+
+      friend.destroyRecord().then(() => {
+        this.transitionTo('friends.index');
+      });
     }
   }
 });
