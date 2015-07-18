@@ -30,6 +30,8 @@ export default Ember.Controller.extend({
     },
 
     cancel: function() {
+      console.log('+- cancel called from friends base controller');
+
       return true;
     }
   }
