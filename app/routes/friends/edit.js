@@ -1,8 +1,10 @@
 import Ember from 'ember';
 
 export default Ember.Route.extend({
-  deactivate: function() {
-    var model = this.modelFor('friends/edit');
-    model.rollback();
+  resetController: function(controller, isExiting) {
+    if (isExiting) {
+      var model = controller.get('model');
+      model.rollback();
+    }
   }
 });

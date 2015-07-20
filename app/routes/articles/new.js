@@ -7,11 +7,13 @@ export default Ember.Route.extend({
     });
   },
 
-  deactivate: function() {
-    var model = this.modelFor('articles/new');
+  resetController: function(controller, isExiting) {
+    if (isExiting) {
+      var model = controller.get('model');
 
-    if (model.get('isNew')) {
-      model.destroyRecord()
+      if (model.get('isNew')) {
+        model.destroyRecord();
+      }
     }
   },
 

@@ -11,11 +11,17 @@ export default Ember.Route.extend({
 
   deactivate: function() {
     console.log('+-- deactivate hook called from friends new route');
+  },
 
-    var model = this.modelFor('friends/new');
+  resetController: function(controller, isExiting) {
+    console.log('+-- resetController hook called from friends new route');
 
-    if (model.get('isNew')) {
-      model.destroyRecord();
+    if (isExiting) {
+      var model = controller.get('model');
+
+      if (model.get('isNew')) {
+        model.destroyRecord();
+      }
     }
   },
 

@@ -1,9 +1,15 @@
 <td>{{article.description}}</td>
 <td>{{article.notes}}</td>
 <td>{{article.createdAt}}</td>
-<td>{{view "select" content=articleStates selection=article.state}}</td>
+<td>
+  {{#x-select value=article.state action="saveArticle"}}
+    {{#each articleStates as |state|}}
+      {{#x-option value=state}}{{state}}{{/x-option}}
+    {{/each}}
+  {{/x-select}}
+</td>
 <td>
   {{#if article.isSaving}}
-    <p>Saving ...</p>
+    <span>Saving ...</span>
   {{/if}}
 </td>
