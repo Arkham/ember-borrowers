@@ -1,6 +1,6 @@
+import Ember from 'ember';
 import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
-
 
 moduleForComponent('articles/article-row', 'Integration | Component | articles/article row', {
   integration: true
@@ -9,19 +9,26 @@ moduleForComponent('articles/article-row', 'Integration | Component | articles/a
 test('it renders', function(assert) {
   assert.expect(2);
 
-  // Set any properties with this.set('myProperty', 'value');
-  // Handle any actions with this.on('myAction', function(val) { ... });
+  this.set('possibleStates', ['returned', 'borrowed']);
 
-  this.render(hbs`{{articles/article-row}}`);
+  this.set('model', Ember.A([
+    Ember.Object.create({
+      description: 'Bag',
+      notes: 'It is very pretty',
+      createdAt: new Date(),
+      state: 'borrowed'
+    })
+  ]));
 
-  assert.equal(this.$().text(), '');
+  this.on('save', function() {
+  });
 
-  // Template block usage:
   this.render(hbs`
-    {{#articles/article-row}}
-      template block text
-    {{/articles/article-row}}
+    {{#each model as |article|}}
+      {{articles/article-row article=article save="save" articleStates=possibleStates}}
+    {{/each}}
   `);
 
-  assert.equal(this.$().text().trim(), 'template block text');
+  assert.equal(this.$('.description').text(), 'Bag');
+  assert.equal(this.$('.notes').text(), 'It is very pretty');
 });

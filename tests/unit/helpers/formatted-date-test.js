@@ -3,8 +3,8 @@ import { module, test } from 'qunit';
 
 module('Unit | Helper | formatted date');
 
-// Replace this with your real tests.
 test('it works', function(assert) {
-  var result = formattedDate(42);
-  assert.ok(result);
+  var date = new Date(2015, 1, 1, 0, 0);
+  var result = formattedDate(date, 'LL');
+  assert.equal(result, 'February 1, 2015');
 });
