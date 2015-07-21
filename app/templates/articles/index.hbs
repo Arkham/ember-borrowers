@@ -1,5 +1,13 @@
 <h2>Articles Index</h2>
 
+<button {{action "toggleShowReturned"}}>
+  {{#if showReturned}}
+    Show All
+  {{else}}
+    Show Returned
+  {{/if}}
+</button>
+
 <table class="primary">
   <thead>
     <tr>
@@ -11,7 +19,7 @@
     </tr>
   </thead>
   <tbody>
-    {{#each model as |article|}}
+    {{#each filteredResults as |article|}}
       {{articles/article-row article=article save="save" articleStates=possibleStates}}
     {{/each}}
   </tbody>

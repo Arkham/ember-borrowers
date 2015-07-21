@@ -5,6 +5,7 @@ export default Ember.Route.extend({
     let articles = this.modelFor('friends/show').get('articles');
 
     if (articles.get('isFulfilled')) {
+      console.log('reloading articles');
       articles.reload();
     }
 
