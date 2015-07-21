@@ -42,7 +42,7 @@ test('Creating a new friend', function(assert) {
       currentRouteName(),
       'friends.show.index',
       'Redirects to friends.show after create'
-    )
+    );
   });
 });
 
